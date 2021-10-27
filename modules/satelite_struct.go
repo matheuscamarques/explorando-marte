@@ -1,6 +1,9 @@
 package modules
 
-import "fmt"
+import (
+	"fmt"
+	"strings"
+)
 
 type SateliteStruct struct {
 	Planalto PlanaltoStruct
@@ -68,7 +71,16 @@ func (sat *SateliteStruct) ImprimirSondas() {
 	}
 }
 
+func trimBreakLine(str string) string {
+	str = strings.TrimSuffix(str, "\n")
+	str = strings.TrimSuffix(str, "\r")
+
+	return str
+}
+
 func (sat *SateliteStruct) Command(sonda SondaStruct, commando string) SondaStruct {
+	commando = trimBreakLine(commando)
+
 	for _, c := range commando {
 		if c == L || c == R {
 			sonda = sat.GirarSonda(sonda, c)

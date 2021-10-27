@@ -5,7 +5,7 @@ import (
 	"testing"
 )
 
-func TestSateliteStruct_PosicionarSonda(t *testing.T) {
+/* func TestSateliteStruct_PosicionarSonda(t *testing.T) {
 	type fields struct {
 		Planalto PlanaltoStruct
 		sondas   []SondaStruct
@@ -18,7 +18,10 @@ func TestSateliteStruct_PosicionarSonda(t *testing.T) {
 		fields fields
 		args   args
 	}{
-		// TODO: Add test cases.
+		{
+			name: "Valid",
+			fields: ,
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
@@ -29,7 +32,7 @@ func TestSateliteStruct_PosicionarSonda(t *testing.T) {
 			sat.PosicionarSonda(tt.args.sonda)
 		})
 	}
-}
+} */
 
 func TestSateliteStruct_MoverSonda(t *testing.T) {
 	type fields struct {

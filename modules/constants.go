@@ -1,5 +1,7 @@
 package modules
 
+//type lado int
+
 const (
 	N = "N"
 	S = "S"
