@@ -13,5 +13,8 @@
  - Go version  1.16
  - Prótotipo em GO
 
- <s>- Implementando em elixir </s>
+ ## Estruturas
+   - Planalto
+
+   - <s> Implementando em elixir </s>
 
