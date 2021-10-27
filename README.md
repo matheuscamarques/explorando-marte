@@ -14,7 +14,9 @@
  - Prótotipo em GO
 
  ## Estruturas
-   - Planalto
+   - Planalto - Responsável por dar limites
+   - Sonda    - Responsável por navegar no Planalto
+   - Satelite - Responsável por controlar a Sonda nos limites do Planalto
 
    - <s> Implementando em elixir </s>
 
