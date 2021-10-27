@@ -14,7 +14,7 @@ func (sat *SateliteStruct) PosicionarSonda(sonda SondaStruct) {
 func (sat *SateliteStruct) MoverSonda(sonda SondaStruct) SondaStruct {
 	switch sonda.Dir {
 	case N:
-		if sonda.PosY < sat.Planalto.limite_vertical {
+		if sonda.PosY < sat.Planalto.LimiteVertical {
 			sonda.PosY++
 		}
 	case S:
@@ -26,7 +26,7 @@ func (sat *SateliteStruct) MoverSonda(sonda SondaStruct) SondaStruct {
 			sonda.PosX--
 		}
 	case E:
-		if sonda.PosX < sat.Planalto.limite_horizontal {
+		if sonda.PosX < sat.Planalto.LimiteHorizontal {
 			sonda.PosX++
 		}
 	}
