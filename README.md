@@ -8,5 +8,5 @@
 
 ## Doc
  - Prótotipo em GO
- - Implementando em elixir
+ <s>- Implementando em elixir </s>
 
