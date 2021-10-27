@@ -10,8 +10,15 @@ type SateliteStruct struct {
 	sondas   []SondaStruct
 }
 
-func (sat *SateliteStruct) PosicionarSonda(sonda SondaStruct) {
+func (sat *SateliteStruct) PosicionarSonda(sonda SondaStruct) error {
+	if sonda.PosX < 0 || sonda.PosX > sat.Planalto.LimiteHorizontal {
+		return fmt.Errorf("position invalid in X axis")
+	} else if sonda.PosY < 0 || sonda.PosY > sat.Planalto.LimiteVertical {
+		return fmt.Errorf("position invalid in Y axis")
+	}
+
 	sat.sondas = append(sat.sondas, sonda)
+	return nil
 }
 
 func (sat *SateliteStruct) MoverSonda(sonda SondaStruct) SondaStruct {
@@ -36,8 +43,8 @@ func (sat *SateliteStruct) MoverSonda(sonda SondaStruct) SondaStruct {
 	return sonda
 }
 
-func (sat *SateliteStruct) GirarSonda(sonda SondaStruct, lado rune) SondaStruct {
-	switch lado {
+func (sat *SateliteStruct) GirarSonda(sonda SondaStruct, l lado) SondaStruct {
+	switch l {
 	case L:
 		switch sonda.Dir {
 		case N:
@@ -78,17 +85,38 @@ func trimBreakLine(str string) string {
 	return str
 }
 
-func (sat *SateliteStruct) Command(sonda SondaStruct, commando string) SondaStruct {
+func (sat *SateliteStruct) Command(sonda SondaStruct, commando string) (SondaStruct, error) {
 	commando = trimBreakLine(commando)
 
-	for _, c := range commando {
-		if c == L || c == R {
-			sonda = sat.GirarSonda(sonda, c)
-		}
-		if c == M {
-			sonda = sat.MoverSonda(sonda)
-		}
+	tempSonda := sonda
 
+	for _, c := range commando {
+		switch c {
+		case 'L':
+			tempSonda = sat.GirarSonda(sonda, L)
+		case 'R':
+			tempSonda = sat.GirarSonda(sonda, R)
+		case 'M':
+			tempSonda = sat.MoverSonda(sonda)
+		default:
+			return sonda, fmt.Errorf("command invalid")
+		}
 	}
-	return sonda
+
+	return tempSonda, nil
+}
+
+func ParseDirection(direction string) direcao {
+	switch direction {
+	case "N":
+		return N
+	case "S":
+		return S
+	case "W":
+		return W
+	case "E":
+		return E
+	}
+
+	return Invalid
 }

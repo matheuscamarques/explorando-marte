@@ -3,5 +3,5 @@ package modules
 type SondaStruct struct {
 	PosX int
 	PosY int
-	Dir  string
+	Dir  direcao
 }

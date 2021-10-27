@@ -42,9 +42,12 @@ func main() {
 				}
 				count++
 			} else {
-				satelite.PosicionarSonda(
-					satelite.Command(*sonda, input),
-				)
+				tempSonda, err := satelite.Command(*sonda, input)
+				if err != nil {
+					panic(err)
+				}
+
+				satelite.PosicionarSonda(tempSonda)
 				count++
 			}
 		}
@@ -88,7 +91,10 @@ func criarSonda(input string) (*modules.SondaStruct, error) {
 		return nil, err
 	}
 
-	dir := s[2]
+	dir := modules.ParseDirection(s[2])
+	if dir == modules.Invalid {
+		return nil, fmt.Errorf("invalid direction")
+	}
 
 	return &modules.SondaStruct{PosX: x, PosY: y, Dir: dir}, nil
 }

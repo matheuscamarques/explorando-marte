@@ -1,16 +1,19 @@
 package modules
 
-//type lado int
+type direcao uint8
+
+type lado uint8
 
 const (
-	N = "N"
-	S = "S"
-	W = "W"
-	E = "E"
+	Invalid direcao = iota
+	N
+	S
+	W
+	E
 )
 
 const (
-	L = 'L'
-	R = 'R'
-	M = 'M'
+	L lado = iota
+	R
+	M
 )
