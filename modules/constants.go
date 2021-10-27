@@ -1,10 +1,10 @@
 package modules
 
 const (
-	N = 'N'
-	S = 'S'
-	W = 'W'
-	E = 'E'
+	N = "N"
+	S = "S"
+	W = "W"
+	E = "E"
 )
 
 const (

@@ -7,7 +7,7 @@
 - $ go main.go
 
 ## Test
-- $ go test nasateste/modules
+- $ go test github.com/matheuscamarques/explorando-marte/modules
 
 ## Doc
  - Go version  1.16
