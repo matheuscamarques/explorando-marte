@@ -7,7 +7,10 @@
 - $ go main.go
 
 ## Test
+  #### Modulos
 - $ go test github.com/matheuscamarques/explorando-marte/modules
+  #### Main
+- $ go test github.com/matheuscamarques/explorando-marte 
 
 ## Doc
  - Go version  1.16
