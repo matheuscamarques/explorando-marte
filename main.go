@@ -55,9 +55,30 @@ func main() {
 	satelite.ImprimirSondas()
 }
 
+func getUserInput() (input string) {
+	inputReader := bufio.NewReader(os.Stdin)
+
+	for {
+		consoleInput, _ := inputReader.ReadString('\n')
+		if consoleInput == "\n" || consoleInput == "\r\n" {
+			break
+		}
+
+		input += consoleInput
+	}
+
+	return
+}
+
+func trimEspecial(input string) string {
+	input = strings.TrimSuffix(input, "\n")
+	input = strings.TrimSuffix(input, "\r")
+	return input
+}
+
 func criarPlanalto(input string) (*modules.PlanaltoStruct, error) {
 	s := strings.Split(
-		strings.TrimSuffix(input, "\n"), " ",
+		trimEspecial(input), " ",
 	)
 
 	a, err := strconv.Atoi(s[0])
@@ -76,7 +97,7 @@ func criarPlanalto(input string) (*modules.PlanaltoStruct, error) {
 }
 
 func criarSonda(input string) (*modules.SondaStruct, error) {
-	s := strings.Split(strings.TrimSuffix(input, "\n"), " ")
+	s := strings.Split(trimEspecial(input), " ")
 	if len(s) != 3 {
 		return nil, fmt.Errorf("command invalid")
 	}
@@ -97,20 +118,4 @@ func criarSonda(input string) (*modules.SondaStruct, error) {
 	}
 
 	return &modules.SondaStruct{PosX: x, PosY: y, Dir: dir}, nil
-}
-
-func getUserInput() (input string) {
-	inputReader := bufio.NewReader(os.Stdin)
-
-	for {
-		consoleInput, _ := inputReader.ReadString('\n')
-
-		if consoleInput == "\n" {
-			break
-		}
-
-		input += consoleInput
-	}
-
-	return
 }

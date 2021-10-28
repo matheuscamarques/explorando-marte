@@ -74,7 +74,19 @@ func (sat *SateliteStruct) GirarSonda(sonda SondaStruct, l lado) SondaStruct {
 
 func (sat *SateliteStruct) ImprimirSondas() {
 	for _, sonda := range sat.sondas {
-		fmt.Printf("%d %d %s\n", sonda.PosX, sonda.PosY, string(sonda.Dir))
+		var dir string
+		switch sonda.Dir {
+		case N:
+			dir = "N"
+		case S:
+			dir = "S"
+		case W:
+			dir = "W"
+		case E:
+			dir = "E"
+		}
+
+		fmt.Printf("%d %d %s\n", sonda.PosX, sonda.PosY, string(dir))
 	}
 }
 
@@ -93,11 +105,11 @@ func (sat *SateliteStruct) Command(sonda SondaStruct, commando string) (SondaStr
 	for _, c := range commando {
 		switch c {
 		case 'L':
-			tempSonda = sat.GirarSonda(sonda, L)
+			tempSonda = sat.GirarSonda(tempSonda, L)
 		case 'R':
-			tempSonda = sat.GirarSonda(sonda, R)
+			tempSonda = sat.GirarSonda(tempSonda, R)
 		case 'M':
-			tempSonda = sat.MoverSonda(sonda)
+			tempSonda = sat.MoverSonda(tempSonda)
 		default:
 			return sonda, fmt.Errorf("command invalid")
 		}
