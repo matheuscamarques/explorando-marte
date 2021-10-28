@@ -4,7 +4,7 @@
 - $ go build main.go
 
 ## Run
-- $ go main.go
+- $ ./main
 
 ## Test
   #### Modulos
